@@ -1,7 +1,7 @@
 const students = document.querySelectorAll('li');
 const studentAmount = students.length;
-const currentPageNumber = 0;
-
+let currentPageNumber = 0;
+console.log(currentPageNumber);
 
 function showPage () {
   $('.student-item').hide();
@@ -12,30 +12,25 @@ function showPage () {
   }
 }
 
-showPage();
-
-function appendPageLinks () {
-  // determine how many pages for this student list
-  const pages = Math.ceil(studentAmount/10);
-  // create a page link section
-
-  // "for" every pages
-      // add a page link to the page link section
-  // remove the old page link section from the site
-  // append our new page link section to the site
-  // define what happens when you click a link (event listener)
-      // Use showPage to display to display the page for the link clicked
-      // mark that link as active
-}
-
 function createButtons () {
-  const pages = Math.ceil(studentAmount / 10);
-  const newLinks = "";
-
-  for (let i = 0; i < pages; i ++) {
-
+  const totalPages = Math.floor(studentAmount/10);
+  const page = document.querySelector('.page');
+  const newPagesDiv = document.createElement('div');
+  $(newPagesDiv).addClass('pagination');
+  page.appendChild(newPagesDiv);
+  $('.pagination').append("<button id='link1' class='active'>1</button>")
+  for (let i = 2; i <= totalPages; i ++) {
+    $('.pagination').append("<button id='link" + i + "'>" + i + "</button>");
   }
 }
 
-
+showPage();
 createButtons();
+
+$('button').on('click', function(event){
+  let $target = $(event.target);
+  $('button').removeClass('active');
+  $target.addClass('active');
+  currentPageNumber = $target.text();
+  showPage();
+})

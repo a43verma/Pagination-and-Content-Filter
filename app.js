@@ -23,7 +23,7 @@ function createButtons () {
   }
 }
 
-showPage();
+showPage(allStudents);
 createButtons();
 
 $('button').on('click', function(event){
@@ -39,13 +39,36 @@ $('.page-header').append('<input type="text" class="student-search" id="myInput"
 function searchNames () {
   const input = $('#myInput').val().toUpperCase();
   $('button').hide();
-  $('.student-details h3').each(function (index) {
-    let name = $(this).text().toUpperCase();
-    let student = $(this).closest('.student-item');
+  let name;
+  let newStudentList = [];
+  for (let i = 0; i < studentAmount; i ++) {
+    name = allStudents[i].querySelector('h3').innerHTML.toUpperCase();
     if (name.indexOf(input) > -1) {
-      student.show();
-    } else {
-      student.hide();
+      console.log(allStudents[i]);
+      newStudentList.push(allStudents[i]);
     }
-  })
+    if (newStudentList.length = 0) {
+      $('.student-list').text("<h1>No students were found</h1>");
+    }
+    console.log(newStudentList)
+    allStudents = newStudentList;
+    showPage();
+
+    allStudents = document.querySelectorAll('li');
+  }
+  // $('.student-details h3').each(function (index) {
+  //   let name = $(this).text().toUpperCase();
+  //   let student = $(this).closest('.student-item');
+  //   if (name.indexOf(input) > -1) {
+  //     student.show();
+  //     console.log(student);
+  //   } else {
+  //     student.hide();
+  //   }
+  // })
 }
+// let thisStudent = allStudents[0].querySelector('h3');
+// console.log(allStudents[0].querySelector('h3').innerHTML);
+// console.log($(thisStudent).val())
+// console.log(thisStudent.innerHTML);
+// console.log($(allStudents[0]).children().children());

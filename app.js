@@ -1,7 +1,7 @@
 let allStudents = document.querySelectorAll('li');
 const studentAmount = allStudents.length;
 const page = document.querySelector('.page');
-let totalPages = Math.ceil(studentAmount/10);
+
 let currentPageNumber = 0;
 
 function showPage () {
@@ -21,6 +21,10 @@ function createButtons () {
   for (let i = 2; i <= totalPages; i ++) {
     $('.pagination').append("<button id='link" + i + "'>" + i + "</button>");
   }
+}
+
+function removeButtons () {
+
 }
 
 showPage(allStudents);
@@ -56,19 +60,3 @@ function searchNames () {
 
     allStudents = document.querySelectorAll('li');
   }
-  // $('.student-details h3').each(function (index) {
-  //   let name = $(this).text().toUpperCase();
-  //   let student = $(this).closest('.student-item');
-  //   if (name.indexOf(input) > -1) {
-  //     student.show();
-  //     console.log(student);
-  //   } else {
-  //     student.hide();
-  //   }
-  // })
-}
-// let thisStudent = allStudents[0].querySelector('h3');
-// console.log(allStudents[0].querySelector('h3').innerHTML);
-// console.log($(thisStudent).val())
-// console.log(thisStudent.innerHTML);
-// console.log($(allStudents[0]).children().children());

@@ -37,6 +37,12 @@ function allLinks (amount) {
   for (let i = 1; i <= amount; i ++) {
     createLink(i);
   }
+  // Gives the links the ability to go through the student list
+  $('.pagination li a').on('click', function(event){
+    let $target = $(event.target);
+    let pageNumber = $target.text();
+    showPage(pageNumber, allStudents, $listOfStudents);
+  })
 }
 
 // Removes the links for pagination
@@ -81,10 +87,3 @@ function searchNames () {
 createPagination();
 allLinks(totalPages);
 showPage(1, allStudents, $listOfStudents);
-
-// Gives the links the ability to go through the student list
-$('.pagination li a').on('click', function(event){
-  let $target = $(event.target);
-  let pageNumber = $target.text();
-  showPage(pageNumber, allStudents, $listOfStudents);
-})
